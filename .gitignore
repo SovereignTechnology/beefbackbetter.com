@@ -1,0 +1,66 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+vendor/
+
+# Build output / generated
+dist/
+build/
+out/
+.next/
+.nuxt/
+.astro/
+.cache/
+.parcel-cache/
+.svelte-kit/
+.vercel/
+.netlify/
+public/build/
+
+# Environment & secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets.json
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Package manager artifacts
+.npm
+.yarn/cache
+.yarn/unplugged
+.yarn/install-state.gz
+
+# Testing & coverage
+coverage/
+.nyc_output/
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.history/
+
+# Misc
+*.tmp
+tmp/
+.temp/
