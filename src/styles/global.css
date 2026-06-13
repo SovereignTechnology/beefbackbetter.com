@@ -1,0 +1,243 @@
+/* ==========================================================================
+   Beef Back Better — global styles & design tokens
+   Theme: "Rustic ranch" — cream background, brown serif headings, warm accents.
+   ========================================================================== */
+
+:root {
+  /* Surfaces */
+  --cream: #fbf6ec;
+  --cream-deep: #f3e9d8;
+  --paper: #fffdf8;
+
+  /* Ink / text */
+  --brown-900: #2c2117;
+  --brown-700: #463728;
+  --brown-500: #6b5440;
+  --brown-300: #9a8268;
+
+  /* Accents */
+  --rust: #a8432a; /* beef red */
+  --rust-dark: #8a3320;
+  --sage: #6e7b53; /* pasture green */
+  --sage-dark: #525c3c;
+  --gold: #d8a24a;
+
+  /* Lines & shadows */
+  --line: rgba(44, 33, 23, 0.12);
+  --line-strong: rgba(44, 33, 23, 0.22);
+  --shadow-sm: 0 2px 8px -3px rgba(44, 33, 23, 0.22);
+  --shadow-md: 0 14px 34px -16px rgba(44, 33, 23, 0.4);
+
+  /* Type */
+  --font-serif: 'Fraunces Variable', 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Inter Variable', 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* Layout */
+  --maxw: 1120px;
+  --gutter: clamp(1.1rem, 4vw, 2.5rem);
+  --radius: 16px;
+  --radius-sm: 10px;
+  --header-h: 68px;
+}
+
+/* ----- reset ------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Offset anchor jumps so headings clear the sticky header. */
+  scroll-padding-top: calc(var(--header-h) + 12px);
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--cream);
+  color: var(--brown-900);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  color: var(--brown-900);
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+:focus-visible {
+  outline: 3px solid var(--rust);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ----- layout helpers ---------------------------------------------------- */
+.container {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  padding-block: clamp(3.5rem, 8vw, 6.5rem);
+}
+
+.section--tint {
+  background-color: var(--cream-deep);
+}
+
+.section-head {
+  max-width: 46rem;
+  margin-bottom: clamp(2rem, 5vw, 3.25rem);
+}
+
+.section-head .eyebrow {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.82rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--rust);
+  margin-bottom: 0.75rem;
+}
+
+.section-head h2 {
+  font-size: clamp(2rem, 5vw, 3rem);
+}
+
+.section-head p {
+  margin-top: 0.9rem;
+  font-size: clamp(1.02rem, 2vw, 1.2rem);
+  color: var(--brown-500);
+}
+
+/* ----- buttons ----------------------------------------------------------- */
+.btn {
+  --btn-bg: var(--rust);
+  --btn-fg: var(--cream);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.8rem 1.4rem;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  background-color: var(--btn-bg);
+  color: var(--btn-fg);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  background-color: var(--rust-dark);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn--ghost {
+  --btn-bg: transparent;
+  --btn-fg: var(--brown-900);
+  border-color: var(--line-strong);
+  box-shadow: none;
+}
+
+.btn--ghost:hover {
+  --btn-bg: var(--brown-900);
+  --btn-fg: var(--cream);
+  background-color: var(--brown-900);
+  border-color: var(--brown-900);
+}
+
+.btn--whatsapp {
+  --btn-bg: #25d366;
+  --btn-fg: #0b3d1f;
+}
+
+.btn--whatsapp:hover {
+  --btn-bg: #1fb955;
+  background-color: #1fb955;
+}
+
+.btn--lg {
+  padding: 0.95rem 1.7rem;
+  font-size: 1.05rem;
+}
+
+/* Visually-hidden but available to screen readers */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  left: 0.75rem;
+  top: -3rem;
+  z-index: 200;
+  background: var(--brown-900);
+  color: var(--cream);
+  padding: 0.6rem 1rem;
+  border-radius: 0 0 8px 8px;
+  transition: top 0.18s ease;
+}
+
+.skip-link:focus {
+  top: 0;
+}

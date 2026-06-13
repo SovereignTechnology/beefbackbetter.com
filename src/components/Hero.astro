@@ -1,0 +1,114 @@
+---
+import { ui, type Lang } from '../i18n/content';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = ui[lang];
+---
+
+<section class="hero">
+  <div class="hero-bg" aria-hidden="true">
+    <!-- Decorative rolling-pasture silhouette -->
+    <svg class="hills" viewBox="0 0 1440 320" preserveAspectRatio="none" aria-hidden="true">
+      <path
+        fill="var(--sage)"
+        fill-opacity="0.85"
+        d="M0,224 C240,160 480,288 720,256 C960,224 1200,128 1440,176 L1440,320 L0,320 Z"
+      ></path>
+      <path
+        fill="var(--sage-dark)"
+        fill-opacity="0.9"
+        d="M0,288 C260,240 520,320 760,296 C1000,272 1220,224 1440,256 L1440,320 L0,320 Z"
+      ></path>
+    </svg>
+  </div>
+
+  <div class="container hero-inner">
+    <p class="hero-eyebrow">{t.hero.eyebrow}</p>
+    <h1>
+      {t.hero.title}<br />
+      <span class="accent">{t.hero.titleAccent}</span>
+    </h1>
+    <p class="hero-sub">{t.hero.subtitle}</p>
+    <div class="hero-cta">
+      <a class="btn btn--lg" href="#markets">{t.hero.ctaMarkets}</a>
+      <a class="btn btn--ghost btn--lg" href="#orders">{t.hero.ctaOrders}</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    background:
+      radial-gradient(120% 90% at 80% -10%, color-mix(in srgb, var(--gold) 28%, transparent), transparent 60%),
+      linear-gradient(170deg, var(--cream) 0%, var(--cream-deep) 100%);
+  }
+
+  /* To use a real photo instead of the gradient, add /images/hero.jpg and
+     uncomment the two lines below. */
+  /* .hero { background-image: linear-gradient(rgba(44,33,23,.45), rgba(44,33,23,.45)), url('/images/hero.jpg'); */
+  /*         background-size: cover; background-position: center; } */
+  /* .hero .accent, .hero h1, .hero .hero-sub, .hero .hero-eyebrow { color: var(--cream); } */
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+  }
+
+  .hills {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 42%;
+  }
+
+  .hero-inner {
+    padding-top: clamp(3.5rem, 9vw, 6.5rem);
+    padding-bottom: clamp(5rem, 12vw, 9rem);
+    max-width: 52rem;
+  }
+
+  .hero-eyebrow {
+    display: inline-block;
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.04em;
+    color: var(--sage-dark);
+    background: var(--paper); /* fallback for browsers without color-mix() */
+    background: color-mix(in srgb, var(--paper) 70%, transparent);
+    padding: 0.4rem 0.9rem;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    margin-bottom: 1.25rem;
+  }
+
+  h1 {
+    font-size: clamp(2.6rem, 8vw, 5rem);
+    margin-bottom: 1.1rem;
+  }
+
+  .accent {
+    color: var(--rust);
+    font-style: italic;
+  }
+
+  .hero-sub {
+    font-size: clamp(1.1rem, 2.4vw, 1.45rem);
+    color: var(--brown-700);
+    max-width: 38rem;
+    margin-bottom: 2rem;
+  }
+
+  .hero-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+  }
+</style>
