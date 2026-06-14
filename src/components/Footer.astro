@@ -1,0 +1,106 @@
+---
+import { ui, site, type Lang } from '../i18n/content';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = ui[lang];
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <img class="brand-logo" src="/images/logo.png" alt="" width="44" height="44" />
+      <div>
+        <p class="footer-name">{site.brand}</p>
+        <p class="footer-tag">{t.footer.tagline}</p>
+      </div>
+    </div>
+
+    <nav class="footer-nav" aria-label={t.footer.ariaNav}>
+      <a href="#markets">{t.nav.markets}</a>
+      <a href="#orders">{t.nav.orders}</a>
+      <a href="#about">{t.nav.about}</a>
+      <a href="#contact">{t.nav.contact}</a>
+      <a href={site.instagram.url} target="_blank" rel="noopener noreferrer">{site.instagram.handle}</a>
+      <a href={site.x.url} target="_blank" rel="noopener noreferrer">{site.x.handle}</a>
+    </nav>
+  </div>
+
+  <div class="container footer-base">
+    <p>© {year} {site.brand}. {t.footer.rights}</p>
+    <p>{t.footer.madeIn}</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--brown-900);
+    color: var(--cream); /* fallback for browsers without color-mix() */
+    color: color-mix(in srgb, var(--cream) 86%, transparent);
+    padding-block: clamp(2.5rem, 6vw, 3.5rem) 1.5rem;
+  }
+
+  .footer-inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.75rem;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: 1.75rem;
+    border-bottom: 1px solid rgba(251, 246, 236, 0.16);
+  }
+
+  .footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+  }
+
+  .footer-brand .brand-logo {
+    width: 44px;
+    height: 44px;
+    object-fit: contain;
+    flex: none;
+  }
+
+  .footer-name {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: var(--cream);
+  }
+
+  .footer-tag {
+    font-size: 0.95rem;
+    color: rgba(251, 246, 236, 0.7);
+  }
+
+  .footer-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.1rem 1.5rem;
+  }
+
+  .footer-nav a {
+    color: rgba(251, 246, 236, 0.82);
+    font-weight: 500;
+  }
+
+  .footer-nav a:hover {
+    color: var(--cream);
+    text-decoration: underline;
+  }
+
+  .footer-base {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+    justify-content: space-between;
+    margin-top: 1.25rem;
+    font-size: 0.85rem;
+    color: rgba(251, 246, 236, 0.6);
+  }
+</style>

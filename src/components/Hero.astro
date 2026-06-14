@@ -1,0 +1,86 @@
+---
+import { ui, type Lang } from '../i18n/content';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = ui[lang];
+---
+
+<section class="hero">
+  <div class="container hero-inner">
+    <p class="hero-eyebrow">{t.hero.eyebrow}</p>
+    <h1>
+      {t.hero.title}<br />
+      <span class="accent">{t.hero.titleAccent}</span>
+    </h1>
+    <p class="hero-sub">{t.hero.subtitle}</p>
+    <div class="hero-cta">
+      <a class="btn btn--accent btn--lg" href="#markets">{t.hero.ctaMarkets}</a>
+      <a class="btn btn--ghost-light btn--lg" href="#orders">{t.hero.ctaOrders}</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    isolation: isolate;
+    color: #fff;
+    /* Real cattle-on-pasture photo with a deep-navy overlay for legible text.
+       Swap the file in /images/hero-cow.webp to change it. */
+    background-color: #0d142c;
+    background-image:
+      linear-gradient(180deg, rgba(13, 20, 44, 0.5) 0%, rgba(13, 20, 44, 0.72) 100%),
+      url('/images/hero-cow.webp');
+    background-size: cover;
+    background-position: center;
+  }
+
+  .hero-inner {
+    padding-top: clamp(4rem, 11vw, 8rem);
+    padding-bottom: clamp(4.5rem, 12vw, 8.5rem);
+    max-width: 56rem;
+  }
+
+  .hero-eyebrow {
+    display: inline-block;
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    padding: 0.4rem 0.95rem;
+    border-radius: 999px;
+    margin-bottom: 1.3rem;
+  }
+
+  .hero h1 {
+    color: #fff;
+    font-weight: 700;
+    font-size: clamp(2.7rem, 8vw, 5.2rem);
+    margin-bottom: 1.1rem;
+  }
+
+  .accent {
+    color: var(--sage); /* brand orange */
+  }
+
+  .hero-sub {
+    font-size: clamp(1.1rem, 2.4vw, 1.4rem);
+    color: rgba(255, 255, 255, 0.92);
+    max-width: 40rem;
+    margin-bottom: 2rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  }
+
+  .hero-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+  }
+</style>

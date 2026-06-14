@@ -1,0 +1,79 @@
+---
+import { ui, type Lang } from '../i18n/content';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = ui[lang];
+---
+
+<section id="about" class="section">
+  <div class="container about-grid">
+    <div class="about-art">
+      <img
+        src="/images/cattle-grazing.webp"
+        alt={lang === 'es'
+          ? 'Ganado de Beef Back Better pastando en pasturas abiertas de El Salvador'
+          : 'Beef Back Better cattle grazing on open pasture in El Salvador'}
+        width="1000"
+        height="750"
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+
+    <div class="about-copy">
+      <span class="eyebrow">{t.nav.about}</span>
+      <h2>{t.about.title}</h2>
+      {t.about.paragraphs.map((para) => <p>{para}</p>)}
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: clamp(1.5rem, 5vw, 3.5rem);
+    align-items: center;
+  }
+
+  .about-art img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+  }
+
+  .about-copy .eyebrow {
+    display: inline-block;
+    font-weight: 600;
+    font-size: 0.82rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 0.6rem;
+  }
+
+  .about-copy h2 {
+    font-size: clamp(1.9rem, 4.5vw, 2.7rem);
+    margin-bottom: 1rem;
+  }
+
+  .about-copy p {
+    color: var(--brown-700);
+    font-size: 1.08rem;
+    margin-bottom: 1rem;
+  }
+
+  @media (max-width: 720px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+    }
+    .about-art {
+      order: -1;
+    }
+  }
+</style>
