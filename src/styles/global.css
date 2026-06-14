@@ -4,32 +4,37 @@
    ========================================================================== */
 
 :root {
+  /* ---- Brand palette: royal blue + orange + white (matches the logo) ----
+     Token NAMES are kept from the original theme for stability; their VALUES
+     now map to the brand. Roles: --rust = primary (blue),
+     --sage = secondary accent (orange), --brown-* = ink / greys. */
+
   /* Surfaces */
-  --cream: #fbf6ec;
-  --cream-deep: #f3e9d8;
-  --paper: #fffdf8;
+  --cream: #ffffff; /* page background */
+  --cream-deep: #eef1fb; /* tinted section background */
+  --paper: #ffffff; /* cards */
 
   /* Ink / text */
-  --brown-900: #2c2117;
-  --brown-700: #463728;
-  --brown-500: #6b5440;
-  --brown-300: #9a8268;
+  --brown-900: #15181f; /* headings */
+  --brown-700: #353c4a; /* body */
+  --brown-500: #5b6376; /* muted (AA on white) */
+  --brown-300: #98a0b3; /* faint / decorative only */
 
-  /* Accents */
-  --rust: #a8432a; /* beef red */
-  --rust-dark: #8a3320;
-  --sage: #6e7b53; /* pasture green */
-  --sage-dark: #525c3c;
-  --gold: #d8a24a;
+  /* Brand accents */
+  --rust: #1f3fc4; /* PRIMARY — royal blue (buttons, links, accents) */
+  --rust-dark: #18329e; /* blue hover */
+  --sage: #f5821f; /* SECONDARY — orange */
+  --sage-dark: #d96f12; /* orange — icon strokes / hover */
+  --gold: #f6b01f; /* warm highlight */
 
   /* Lines & shadows */
-  --line: rgba(44, 33, 23, 0.12);
-  --line-strong: rgba(44, 33, 23, 0.22);
-  --shadow-sm: 0 2px 8px -3px rgba(44, 33, 23, 0.22);
-  --shadow-md: 0 14px 34px -16px rgba(44, 33, 23, 0.4);
+  --line: rgba(21, 24, 31, 0.12);
+  --line-strong: rgba(21, 24, 31, 0.22);
+  --shadow-sm: 0 2px 8px -3px rgba(21, 24, 31, 0.18);
+  --shadow-md: 0 16px 38px -18px rgba(21, 36, 92, 0.35);
 
   /* Type */
-  --font-serif: 'Fraunces Variable', 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-display: 'Space Grotesk Variable', 'Space Grotesk', system-ui, sans-serif;
   --font-sans: 'Inter Variable', 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
 
   /* Layout */
@@ -86,7 +91,7 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   font-weight: 600;
   line-height: 1.08;
   letter-spacing: -0.01em;
@@ -197,6 +202,21 @@ ul {
   border-color: var(--brown-900);
 }
 
+/* Outlined button for dark backgrounds (e.g. the hero over the photo). */
+.btn--ghost-light {
+  --btn-bg: transparent;
+  --btn-fg: #fff;
+  border-color: rgba(255, 255, 255, 0.6);
+  box-shadow: none;
+}
+
+.btn--ghost-light:hover {
+  --btn-bg: #fff;
+  --btn-fg: var(--brown-900);
+  background-color: #fff;
+  border-color: #fff;
+}
+
 .btn--whatsapp {
   --btn-bg: #25d366;
   --btn-fg: #0b3d1f;
@@ -205,6 +225,16 @@ ul {
 .btn--whatsapp:hover {
   --btn-bg: #1fb955;
   background-color: #1fb955;
+}
+
+.btn--accent {
+  --btn-bg: var(--sage);
+  --btn-fg: #221302;
+}
+
+.btn--accent:hover {
+  --btn-bg: var(--sage-dark);
+  background-color: var(--sage-dark);
 }
 
 .btn--lg {

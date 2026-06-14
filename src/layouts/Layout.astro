@@ -1,5 +1,5 @@
 ---
-import '@fontsource-variable/fraunces';
+import '@fontsource-variable/space-grotesk';
 import '@fontsource-variable/inter';
 import '../styles/global.css';
 import { ui, site, type Lang } from '../i18n/content';
@@ -12,8 +12,8 @@ const { lang } = Astro.props;
 const t = ui[lang];
 
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
-// TODO: add /images/og.jpg (1200×630) then set this to that path for rich previews.
-const ogImage: string | null = null;
+// Social share preview. The square logo works; swap for a 1200×630 image later if desired.
+const ogImage: string | null = '/images/logo.png';
 const ogImageUrl = ogImage ? new URL(ogImage, Astro.site).href : null;
 ---
 
@@ -22,7 +22,8 @@ const ogImageUrl = ogImage ? new URL(ogImage, Astro.site).href : null;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" href="/favicon-180.png" />
     <meta name="generator" content={Astro.generator} />
 
     <title>{t.meta.title}</title>
@@ -45,7 +46,7 @@ const ogImageUrl = ogImage ? new URL(ogImage, Astro.site).href : null;
     <meta name="twitter:card" content={ogImageUrl ? 'summary_large_image' : 'summary'} />
     <meta name="twitter:site" content={site.x.handle} />
     <meta name="twitter:creator" content={site.x.handle} />
-    <meta name="theme-color" content="#fbf6ec" />
+    <meta name="theme-color" content="#ffffff" />
   </head>
   <body>
     <a class="skip-link" href="#main">{t.skipToContent}</a>

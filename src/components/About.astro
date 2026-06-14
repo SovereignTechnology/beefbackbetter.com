@@ -10,19 +10,17 @@ const t = ui[lang];
 
 <section id="about" class="section">
   <div class="container about-grid">
-    <div class="about-art" aria-hidden="true">
-      <!-- Simple grass-fed cow illustration; swap for /images/about.jpg if you like. -->
-      <svg viewBox="0 0 200 200" width="100%" height="100%">
-        <circle cx="100" cy="100" r="92" fill="var(--cream-deep)" />
-        <circle cx="100" cy="100" r="92" fill="none" stroke="var(--rust)" stroke-width="3" stroke-dasharray="6 8" />
-        <g transform="translate(48 70)">
-          <path d="M6 30 Q0 10 18 8 Q24 -4 40 4 Q60 -6 78 6 Q98 4 96 26 Q104 34 92 44 L86 70 H72 L70 52 H40 L38 70 H24 L20 46 Q4 46 6 30 Z" fill="var(--brown-700)" />
-          <circle cx="30" cy="24" r="3" fill="var(--cream)" />
-          <path d="M14 10 Q6 0 2 6" stroke="var(--brown-700)" stroke-width="5" fill="none" stroke-linecap="round" />
-          <path d="M90 14 Q100 4 104 12" stroke="var(--brown-700)" stroke-width="5" fill="none" stroke-linecap="round" />
-        </g>
-        <path d="M40 168 q12 -16 24 0 q12 -16 24 0 q12 -16 24 0 q12 -16 24 0" fill="none" stroke="var(--sage)" stroke-width="4" stroke-linecap="round" />
-      </svg>
+    <div class="about-art">
+      <img
+        src="/images/cattle-grazing.webp"
+        alt={lang === 'es'
+          ? 'Ganado de Beef Back Better pastando en pasturas abiertas de El Salvador'
+          : 'Beef Back Better cattle grazing on open pasture in El Salvador'}
+        width="1000"
+        height="750"
+        loading="lazy"
+        decoding="async"
+      />
     </div>
 
     <div class="about-copy">
@@ -36,14 +34,17 @@ const t = ui[lang];
 <style>
   .about-grid {
     display: grid;
-    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
     gap: clamp(1.5rem, 5vw, 3.5rem);
     align-items: center;
   }
 
-  .about-art {
-    max-width: 320px;
-    margin-inline: auto;
+  .about-art img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
   }
 
   .about-copy .eyebrow {
@@ -72,7 +73,6 @@ const t = ui[lang];
       grid-template-columns: 1fr;
     }
     .about-art {
-      max-width: 220px;
       order: -1;
     }
   }
