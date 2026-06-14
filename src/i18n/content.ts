@@ -41,7 +41,6 @@ export const site = {
   payments: [
     { es: 'Efectivo', en: 'Cash' },
     { es: 'Bitcoin', en: 'Bitcoin' },
-    { es: 'Transferencia bancaria', en: 'Bank transfer' },
   ] as Bilingual[],
 };
 
@@ -227,9 +226,9 @@ export const ui: Record<Lang, {
     orders: {
       title: 'Pedidos grandes con entrega',
       subtitle:
-        '¿Buscas un cuarto de res o más? Lo entregamos directamente a tu puerta. El precio varía según el peso final.',
+        '¿Buscas un cuarto de res o más? Lo entregamos directamente a tu puerta. El precio varía según el precio de mercado y el peso final.',
       weightNote:
-        'El precio se calcula por peso (kilo). Los pesos mostrados son aproximados y varían en cada animal.',
+        'El precio se calcula según el precio de mercado vigente y el peso final (kilo). Los pesos mostrados son aproximados y varían en cada animal.',
       deliveryNote: 'Entrega incluida para pedidos de un cuarto de res en adelante.',
       paymentsLabel: 'Aceptamos',
       cta: 'Pedir por WhatsApp',
@@ -301,9 +300,9 @@ export const ui: Record<Lang, {
     orders: {
       title: 'Large orders, delivered',
       subtitle:
-        'Looking for a quarter cow or more? We deliver it straight to your door. Price varies based on the final weight.',
+        'Looking for a quarter cow or more? We deliver it straight to your door. Price varies based on the market rate and the final weight.',
       weightNote:
-        'Pricing is by weight (per pound). The weights shown are approximate and vary by animal.',
+        'Pricing is based on the current market rate and final weight (per pound). The weights shown are approximate and vary by animal.',
       deliveryNote: 'Delivery included on orders of a quarter cow and up.',
       paymentsLabel: 'We accept',
       cta: 'Order on WhatsApp',
