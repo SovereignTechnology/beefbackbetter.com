@@ -27,14 +27,13 @@ export const site = {
 
   // X / Twitter.
   x: { handle: '@beefbackbetter', url: 'https://x.com/beefbackbetter' },
+  // Instagram.
+  instagram: { handle: '@beefbackbettersv', url: 'https://instagram.com/beefbackbettersv' },
 
-  // WhatsApp is the main ordering channel. Put the number in INTERNATIONAL
-  // format, digits only — for El Salvador that's 503 + the 8-digit number.
-  // TODO: replace with your real WhatsApp number.
-  whatsapp: '50300000000',
+  // WhatsApp is the main ordering channel (international format, digits only).
+  whatsapp: '50369826911',
 
-  // TODO: real email, or set to '' to hide the email button.
-  email: 'hola@beefbackbetter.com',
+  email: 'eat@beefbackbetter.com',
 
   // Payment methods you accept (shown in the Large Orders section).
   // TODO: keep only the ones that are true.
@@ -237,9 +236,9 @@ export const ui: Record<Lang, {
     about: {
       title: 'Sobre Beef Back Better',
       paragraphs: [
-        'Somos una operación familiar que cree que la mejor carne empieza con animales sanos en pasto abierto. Nuestro ganado se cría 100% alimentado con pasto, sin atajos.',
-        'El resultado es una carne con más sabor, criada de forma responsable con la tierra — “beef back better”, devolverle a la res lo que merece.',
-        // TODO: cuenta tu historia real — desde cuándo, dónde está la finca, tus prácticas.
+        'Res salvadoreña 100% alimentada y terminada con pasto — sin hormonas, sin antibióticos y sin aditivos. Nuestro ganado pastorea libremente en las pasturas naturales de los pueblos de montaña de El Salvador, en rotación sobre tierra de primera y suplementado únicamente con sal de roca.',
+        'Los animales se crían hasta los 2 o 3 años y se procesan en la finca, con el bienestar animal y la higiene como máxima prioridad, y se maduran en seco durante 7 días. Creemos en aprovechar el animal de la nariz a la cola.',
+        'Fundada por Owen Gwilliam, quien trajo dos décadas de experiencia en agricultura orgánica en 15 países a El Salvador en 2022. La misión: devolverle lo mejor a la res.',
       ],
     },
     contact: {
@@ -311,9 +310,9 @@ export const ui: Record<Lang, {
     about: {
       title: 'About Beef Back Better',
       paragraphs: [
-        'We’re a family operation that believes the best beef starts with healthy animals on open pasture. Our cattle are raised 100% grass-fed, with no shortcuts.',
-        'The result is beef with more flavor, raised in a way that’s good for the land — putting the “better” back in beef.',
-        // TODO: tell your real story — how long, where the farm is, your practices.
+        '100% grass-fed, grass-finished Salvadoran beef — no hormones, no antibiotics, no additives. Our cattle roam freely on the natural pastures of El Salvador’s mountain villages, rotated across prime grazing land and supplemented only with rock salt.',
+        'Animals are raised to two or three years and processed on the farm, with animal welfare and hygiene as the highest priority, then dry-aged for seven days. We believe in using the whole animal, nose to tail.',
+        'Founded by Owen Gwilliam, who brought two decades of organic-agriculture experience across 15 countries to El Salvador in 2022. The mission: bring the beef back better.',
       ],
     },
     contact: {
