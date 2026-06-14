@@ -25,8 +25,8 @@ export const site = {
   brand: 'Beef Back Better',
   domain: 'beefbackbetter.com',
 
-  // X / Twitter — TODO: confirm the exact handle (you mentioned @beefbackbettersv).
-  x: { handle: '@beefbackbettersv', url: 'https://x.com/beefbackbettersv' },
+  // X / Twitter.
+  x: { handle: '@beefbackbetter', url: 'https://x.com/beefbackbetter' },
 
   // WhatsApp is the main ordering channel. Put the number in INTERNATIONAL
   // format, digits only — for El Salvador that's 503 + the 8-digit number.
