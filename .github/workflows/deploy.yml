@@ -1,10 +1,8 @@
 name: Deploy to GitHub Pages
 
 on:
-  # Deploy on every push to main…
-  push:
-    branches: [main]
-  # …and allow manual runs from the Actions tab.
+  # Auto-deploy is disabled in favor of Cloudflare Pages.
+  # Restore the `push: branches: [main]` trigger here to re-enable GitHub Pages.
   workflow_dispatch:
 
 # Permissions needed for the GitHub Pages deployment.

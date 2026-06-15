@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://beefbackbetter.com/sitemap-index.xml
+Sitemap: https://beefbackbetter.sovit.xyz/sitemap-index.xml

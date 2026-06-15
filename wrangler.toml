@@ -1,0 +1,5 @@
+# Cloudflare Pages configuration.
+# Deploy with:  npm run deploy   (builds, then uploads ./dist)
+name = "beefbackbetter"
+pages_build_output_dir = "./dist"
+compatibility_date = "2026-06-01"
