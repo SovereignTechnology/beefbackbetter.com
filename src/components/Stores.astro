@@ -1,0 +1,91 @@
+---
+import { ui, stores, type Lang } from '../i18n/content';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = ui[lang];
+---
+
+<section id="stores" class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">{t.nav.stores}</span>
+      <h2>{t.stores.title}</h2>
+      <p>{t.stores.subtitle}</p>
+    </div>
+
+    <ul class="store-grid">
+      {stores.map((s) => (
+        <li class="store-card">
+          <h3>{s.name}</h3>
+          <p class="store-loc">
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="currentColor">
+              <path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5Z" />
+            </svg>
+            {s.location[lang]}
+          </p>
+          {s.note && s.note[lang] && <p class="store-note">{s.note[lang]}</p>}
+          {s.mapUrl && (
+            <a class="store-map" href={s.mapUrl} target="_blank" rel="noopener noreferrer">
+              {t.markets.mapLink} ↗
+            </a>
+          )}
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .store-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .store-card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 1.5rem 1.4rem;
+    box-shadow: var(--shadow-sm);
+    border-top: 4px solid var(--sage); /* orange — distinguishes stores from the blue market cards */
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+  }
+
+  .store-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .store-card h3 {
+    font-size: 1.35rem;
+  }
+
+  .store-loc {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 0.45rem;
+    color: var(--brown-500);
+    font-weight: 500;
+  }
+
+  .store-note {
+    margin-top: 0.7rem;
+    color: var(--brown-700);
+  }
+
+  .store-map {
+    display: inline-block;
+    margin-top: 1rem;
+    font-weight: 600;
+    color: var(--rust);
+  }
+
+  .store-map:hover {
+    text-decoration: underline;
+  }
+</style>
