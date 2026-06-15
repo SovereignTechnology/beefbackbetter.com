@@ -260,4 +260,13 @@ const navLinks = [
       if (!e.matches) setOpen(false);
     });
   }
+
+  // Remember the visitor's explicit language choice so auto-detect on "/" never
+  // overrides it. The toggle's `lang` attribute holds the target language code.
+  const langSwitch = document.querySelector<HTMLAnchorElement>('.lang-switch');
+  langSwitch?.addEventListener('click', () => {
+    try {
+      localStorage.setItem('bbb-lang', langSwitch.getAttribute('lang') || '');
+    } catch (e) {}
+  });
 </script>
