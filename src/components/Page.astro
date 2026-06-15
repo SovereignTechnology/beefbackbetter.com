@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Header from './Header.astro';
 import Hero from './Hero.astro';
 import Markets from './Markets.astro';
+import Stores from './Stores.astro';
 import LargeOrders from './LargeOrders.astro';
 import About from './About.astro';
 import Contact from './Contact.astro';
@@ -20,6 +21,7 @@ const { lang } = Astro.props;
   <main id="main">
     <Hero lang={lang} />
     <Markets lang={lang} />
+    <Stores lang={lang} />
     <LargeOrders lang={lang} />
     <About lang={lang} />
     <Contact lang={lang} />

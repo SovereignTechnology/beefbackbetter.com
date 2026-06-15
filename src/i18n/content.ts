@@ -90,6 +90,42 @@ export const marketCuts: Bilingual[] = [
 ];
 
 // ---------------------------------------------------------------------------
+//  Stores that stock Beef Back Better (retail stockists)
+//  TODO: replace these PLACEHOLDERS with the real shops, locations and map links.
+//        Set mapUrl to a Google Maps link (or '' to hide it); note is optional.
+// ---------------------------------------------------------------------------
+export interface Store {
+  name: string;
+  location: Bilingual;
+  note?: Bilingual;
+  mapUrl: string;
+}
+
+export const stores: Store[] = [
+  {
+    name: 'Tienda placeholder #1', // TODO
+    location: { es: 'San Salvador', en: 'San Salvador' },
+    note: {
+      es: 'Busca Beef Back Better en la sección de carnes.',
+      en: 'Look for Beef Back Better in the meat section.',
+    },
+    mapUrl: '',
+  },
+  {
+    name: 'Tienda placeholder #2', // TODO
+    location: { es: 'Santa Tecla, La Libertad', en: 'Santa Tecla, La Libertad' },
+    note: { es: '', en: '' },
+    mapUrl: '',
+  },
+  {
+    name: 'Tienda placeholder #3', // TODO
+    location: { es: 'Antiguo Cuscatlán', en: 'Antiguo Cuscatlán' },
+    note: { es: '', en: '' },
+    mapUrl: '',
+  },
+];
+
+// ---------------------------------------------------------------------------
 //  Large orders — quarter cow and above are delivered, priced by weight
 //  TODO: tune the approximate weights / descriptions to your operation.
 // ---------------------------------------------------------------------------
@@ -139,6 +175,7 @@ export const ui: Record<Lang, {
     orders: string;
     about: string;
     contact: string;
+    stores: string;
     menu: string; // accessible label for the mobile menu button
     homeAria: string; // accessible label for the brand/home link
     ariaPrimary: string; // accessible name for the primary nav landmark
@@ -162,6 +199,10 @@ export const ui: Record<Lang, {
     mapLink: string;
     cutsTitle: string;
     cutsNote: string;
+  };
+  stores: {
+    title: string;
+    subtitle: string;
   };
   orders: {
     title: string;
@@ -196,6 +237,7 @@ export const ui: Record<Lang, {
       orders: 'Pedidos grandes',
       about: 'Nosotros',
       contact: 'Contacto',
+      stores: 'Tiendas',
       menu: 'Menú',
       homeAria: 'Beef Back Better — inicio',
       ariaPrimary: 'Principal',
@@ -213,7 +255,7 @@ export const ui: Record<Lang, {
       ctaOrders: 'Pedidos grandes',
     },
     markets: {
-      title: 'Dónde encontrarnos',
+      title: 'En los mercados',
       subtitle:
         'Llevamos nuestra carne fresca a tres mercados de agricultores cada semana. Pasa a saludar y a probar la diferencia del pasto.',
       daysLabel: 'Días',
@@ -221,6 +263,11 @@ export const ui: Record<Lang, {
       mapLink: 'Ver en el mapa',
       cutsTitle: 'En el puesto del mercado',
       cutsNote: 'Cortes listos para llevar, sin pedido previo:',
+    },
+    stores: {
+      title: 'Encuéntranos en tiendas',
+      subtitle:
+        '¿No alcanzaste el mercado? Nuestra carne también se encuentra en estas tiendas.',
     },
     orders: {
       title: 'Pedidos grandes con entrega',
@@ -270,6 +317,7 @@ export const ui: Record<Lang, {
       orders: 'Large orders',
       about: 'About',
       contact: 'Contact',
+      stores: 'Stores',
       menu: 'Menu',
       homeAria: 'Beef Back Better — home',
       ariaPrimary: 'Primary',
@@ -287,7 +335,7 @@ export const ui: Record<Lang, {
       ctaOrders: 'Large orders',
     },
     markets: {
-      title: 'Where to find us',
+      title: 'At the farmers markets',
       subtitle:
         'We bring our fresh beef to three farmers markets every week. Come say hi and taste the grass-fed difference.',
       daysLabel: 'Days',
@@ -295,6 +343,11 @@ export const ui: Record<Lang, {
       mapLink: 'View on map',
       cutsTitle: 'At the market stand',
       cutsNote: 'Ready-to-go cuts, no pre-order needed:',
+    },
+    stores: {
+      title: 'Find us in stores',
+      subtitle:
+        "Can't make it to a market? You'll also find our beef stocked at these shops.",
     },
     orders: {
       title: 'Large orders, delivered',
