@@ -15,6 +15,18 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
 // Social share preview. The square logo works; swap for a 1200×630 image later if desired.
 const ogImage: string | null = '/images/logo.png';
 const ogImageUrl = ogImage ? new URL(ogImage, Astro.site).href : null;
+
+// Language auto-detection (runs only on the default "/" Spanish page):
+// send first-time visitors whose browser prefers English to /en/. A manual
+// choice saved via the toggle (localStorage 'bbb-lang') always wins, so it is
+// never overridden, and only "/" ever redirects — no loops.
+const detectScript =
+  "(function(){try{var s=localStorage.getItem('bbb-lang');" +
+  "if(s==='en'){location.replace('/en/');return;}if(s==='es')return;" +
+  "var L=navigator.languages||[navigator.language||''];" +
+  "for(var i=0;i<L.length;i++){var l=(L[i]||'').toLowerCase();" +
+  "if(l.indexOf('es')===0)return;" +
+  "if(l.indexOf('en')===0){location.replace('/en/');return;}}}catch(e){}})();";
 ---
 
 <!doctype html>
@@ -22,6 +34,7 @@ const ogImageUrl = ogImage ? new URL(ogImage, Astro.site).href : null;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {lang === 'es' && <script is:inline set:html={detectScript} />}
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
     <link rel="apple-touch-icon" href="/favicon-180.png" />
     <meta name="generator" content={Astro.generator} />
