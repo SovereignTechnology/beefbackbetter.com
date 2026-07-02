@@ -16,21 +16,24 @@ for delivery.
 [`src/i18n/content.ts`](./src/i18n/content.ts).
 
 It holds all the text, the three farmers markets, the large-order tiers,
-prices/weights, payment methods and contact details — with Spanish and English
-side by side. Search it for `TODO` to find everything that still needs your
-real information.
+prices/weights, payment methods, FAQ entries and contact details — with
+Spanish and English side by side. Search it for `TODO` to find everything
+that still needs your real information.
 
 ### Photos
 
-Drop image files in `public/images/` and reference them by path:
+Source photos live in [`src/assets/`](./src/assets/) and are imported by the
+components, so Astro optimizes them at build time (responsive AVIF/WebP):
 
-| File | Used for | Suggested size |
-| --- | --- | --- |
-| `hero.jpg` | Hero background (uncomment the `background-image` lines in `src/components/Hero.astro`) | 2000×1200, < 400 KB |
-| `og.jpg` | Social share preview — then set `ogImage` in `src/layouts/Layout.astro` | 1200×630 |
+| File | Used for |
+| --- | --- |
+| `src/assets/hero-cow.webp` | Hero background (`src/components/Hero.astro`) |
+| `src/assets/cattle-grazing.webp` | About section (`src/components/About.astro`) |
+| `src/assets/logo.png` | Header & footer logo |
+| `public/images/og.jpg` | Social share preview (1200×630, served as-is) |
 
-Until real photos are added, the hero uses a warm gradient, so nothing looks
-broken.
+To swap a photo, replace the file (keep the name) or update the import in the
+component.
 
 ## Develop locally
 
@@ -51,36 +54,38 @@ Requires Node 18+ (see [`.nvmrc`](./.nvmrc) — Node 22).
 
 ```
 src/
-  i18n/content.ts     ← all editable text & data (start here)
-  layouts/Layout.astro ← <head>, meta tags, fonts
-  components/          ← Header, Hero, Markets, LargeOrders, About, Contact, Footer
+  i18n/content.ts      ← all editable text & data (start here)
+  assets/              ← source photos & logo (optimized at build time)
+  layouts/Layout.astro ← <head>, meta tags, fonts, structured data
+  components/          ← Header, Hero, Markets, Stores, LargeOrders, About,
+                          Faq, Contact, WhatsAppFloat, Footer
   pages/index.astro    ← Spanish "/"
   pages/en/index.astro ← English "/en/"
   styles/global.css    ← design tokens & base styles
-public/                ← favicon, robots.txt, CNAME, images
+public/                ← favicon, robots.txt, CNAME, og.jpg
 ```
 
-## Deployment (GitHub Pages)
+## Deployment (Cloudflare Pages)
 
-This repo ships a GitHub Actions workflow
-([`.github/workflows/deploy.yml`](./.github/workflows/deploy.yml)) that builds
-and deploys to GitHub Pages on every push to `main`.
+The site deploys to [Cloudflare Pages](https://pages.cloudflare.com)
+(configured in [`wrangler.toml`](./wrangler.toml)) and is served at
+<https://beefbackbetter.sovit.xyz>:
 
-To turn it on:
+```bash
+npm run deploy   # astro build && wrangler pages deploy
+```
 
-1. **Repo → Settings → Pages → Build and deployment → Source: GitHub Actions.**
-2. Point DNS for `beefbackbetter.com` at GitHub Pages:
-   - Apex `A` records → `185.199.108.153`, `185.199.109.153`,
-     `185.199.110.153`, `185.199.111.153`
-   - (Optional) `www` `CNAME` → `sovITxyz.github.io`
-3. In **Settings → Pages → Custom domain**, enter `beefbackbetter.com`
-   (the [`public/CNAME`](./public/CNAME) file already sets this) and enable
-   **Enforce HTTPS**.
+When the site moves to its production home at `beefbackbetter.com`, update
+`site` in [`astro.config.mjs`](./astro.config.mjs) and the `Sitemap:` line in
+[`public/robots.txt`](./public/robots.txt).
 
-> Not using a custom domain yet? The site assumes it lives at the domain root.
-> If you instead serve it at `https://sovITxyz.github.io/beefbackbetter.com/`,
-> set `base: '/beefbackbetter.com'` in `astro.config.mjs` and remove
-> `public/CNAME`.
+### Legacy: GitHub Pages
+
+A GitHub Actions workflow
+([`.github/workflows/deploy.yml`](./.github/workflows/deploy.yml)) can still
+deploy to GitHub Pages, but its automatic trigger is disabled in favor of
+Cloudflare Pages — it only runs manually via *workflow_dispatch*. See the
+comments in the workflow file to re-enable it.
 
 ## License
 
