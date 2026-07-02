@@ -165,11 +165,73 @@ export const orderTiers: OrderTier[] = [
 ];
 
 // ---------------------------------------------------------------------------
+//  FAQ — common questions, shown in an accordion and exposed to search
+//  engines as FAQPage structured data. Keep answers factual and current.
+// ---------------------------------------------------------------------------
+export interface FaqItem {
+  q: Bilingual;
+  a: Bilingual;
+}
+
+export const faq: FaqItem[] = [
+  {
+    q: {
+      es: '¿Qué significa "100% alimentado con pasto"?',
+      en: 'What does "100% grass-fed" mean?',
+    },
+    a: {
+      es: 'Nuestro ganado pastorea libremente toda su vida en pasturas naturales de El Salvador, en rotación sobre tierra de primera. Sin granos, sin hormonas, sin antibióticos y sin aditivos — solo pasto y sal de roca.',
+      en: 'Our cattle graze freely their whole lives on natural Salvadoran pasture, rotated across prime grazing land. No grain, no hormones, no antibiotics, no additives — just grass and rock salt.',
+    },
+  },
+  {
+    q: {
+      es: '¿Cómo se calcula el precio de un pedido grande?',
+      en: 'How is a large order priced?',
+    },
+    a: {
+      es: 'El precio se basa en el precio de mercado vigente multiplicado por el peso final del pedido. Los pesos publicados son aproximados y varían en cada animal. Escríbenos por WhatsApp y te confirmamos el precio actual.',
+      en: 'Pricing is the current market rate multiplied by the final weight of your order. The published weights are approximate and vary by animal. Message us on WhatsApp and we will confirm the current rate.',
+    },
+  },
+  {
+    q: {
+      es: '¿Hacen entregas a domicilio?',
+      en: 'Do you deliver?',
+    },
+    a: {
+      es: 'Sí — la entrega está incluida en pedidos de un cuarto de res en adelante. Cuéntanos por WhatsApp dónde te encuentras y coordinamos la entrega.',
+      en: 'Yes — delivery is included on orders of a quarter cow and up. Tell us where you are on WhatsApp and we will arrange the delivery.',
+    },
+  },
+  {
+    q: {
+      es: '¿Cuánto espacio necesito en el congelador?',
+      en: 'How much freezer space do I need?',
+    },
+    a: {
+      es: 'Como guía general, un cuarto de res (≈ 45–55 kg) ocupa un congelador de unos 140–170 litros; una media res necesita el doble. Si tienes dudas sobre tu congelador, pregúntanos por WhatsApp.',
+      en: 'As a rule of thumb, a quarter cow (≈ 100–120 lb) fills roughly a 5–6 cu ft freezer; a half cow needs about twice that. Not sure about yours? Ask us on WhatsApp.',
+    },
+  },
+  {
+    q: {
+      es: '¿Cómo puedo pagar?',
+      en: 'How can I pay?',
+    },
+    a: {
+      es: 'Aceptamos efectivo y Bitcoin.',
+      en: 'We accept cash and Bitcoin.',
+    },
+  },
+];
+
+// ---------------------------------------------------------------------------
 //  UI strings (everything else on the page), per language.
 // ---------------------------------------------------------------------------
 export const ui: Record<Lang, {
   htmlLang: string;
-  meta: { title: string; description: string };
+  meta: { title: string; description: string; ogImageAlt: string };
   nav: {
     markets: string;
     orders: string;
@@ -214,6 +276,7 @@ export const ui: Record<Lang, {
     waMessage: string; // pre-filled WhatsApp message
   };
   about: { title: string; paragraphs: string[] };
+  faq: { title: string; subtitle: string; navLabel: string };
   contact: {
     title: string;
     subtitle: string;
@@ -222,6 +285,7 @@ export const ui: Record<Lang, {
     followCta: string;
     waMessage: string;
   };
+  waFloat: { label: string; message: string }; // floating WhatsApp button
   footer: { tagline: string; rights: string; madeIn: string; ariaNav: string };
 }> = {
   // ===== SPANISH (default) =================================================
@@ -231,6 +295,7 @@ export const ui: Record<Lang, {
       title: 'Beef Back Better — Res salvadoreña alimentada con pasto',
       description:
         'Res 100% alimentada con pasto de El Salvador. Encuéntranos en tres mercados de agricultores, o pide un cuarto de res o más con entrega a domicilio.',
+      ogImageAlt: 'Ganado de Beef Back Better pastando en El Salvador',
     },
     nav: {
       markets: 'Mercados',
@@ -288,6 +353,11 @@ export const ui: Record<Lang, {
         'Fundada por Owen Gwilliam, quien trajo dos décadas de experiencia en agricultura orgánica en 15 países a El Salvador en 2022. La misión: devolverle lo mejor a la res.',
       ],
     },
+    faq: {
+      title: 'Preguntas frecuentes',
+      subtitle: '¿Tienes otra duda? Escríbenos por WhatsApp y te respondemos rápido.',
+      navLabel: 'Preguntas',
+    },
     contact: {
       title: 'Hablemos',
       subtitle: 'La forma más rápida de hacer un pedido o preguntar por disponibilidad es por WhatsApp.',
@@ -295,6 +365,10 @@ export const ui: Record<Lang, {
       emailCta: 'Enviar correo',
       followCta: 'Síguenos',
       waMessage: 'Hola Beef Back Better 👋, tengo una pregunta:',
+    },
+    waFloat: {
+      label: 'Chatear por WhatsApp',
+      message: 'Hola Beef Back Better 👋, tengo una pregunta:',
     },
     footer: {
       tagline: 'Res alimentada con pasto, criada en El Salvador.',
@@ -311,6 +385,7 @@ export const ui: Record<Lang, {
       title: 'Beef Back Better — Salvadoran grass-fed beef',
       description:
         '100% grass-fed beef from El Salvador. Find us at three farmers markets, or order a quarter cow or more with home delivery.',
+      ogImageAlt: 'Beef Back Better cattle grazing in El Salvador',
     },
     nav: {
       markets: 'Markets',
@@ -368,6 +443,11 @@ export const ui: Record<Lang, {
         'Founded by Owen Gwilliam, who brought two decades of organic-agriculture experience across 15 countries to El Salvador in 2022. The mission: bring the beef back better.',
       ],
     },
+    faq: {
+      title: 'Frequently asked questions',
+      subtitle: 'Something else on your mind? Message us on WhatsApp and we reply fast.',
+      navLabel: 'FAQ',
+    },
     contact: {
       title: 'Get in touch',
       subtitle: 'The fastest way to place an order or ask about availability is WhatsApp.',
@@ -375,6 +455,10 @@ export const ui: Record<Lang, {
       emailCta: 'Send an email',
       followCta: 'Follow us',
       waMessage: 'Hi Beef Back Better 👋, I have a question:',
+    },
+    waFloat: {
+      label: 'Chat on WhatsApp',
+      message: 'Hi Beef Back Better 👋, I have a question:',
     },
     footer: {
       tagline: 'Grass-fed beef, raised in El Salvador.',

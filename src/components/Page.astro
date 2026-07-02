@@ -6,7 +6,9 @@ import Markets from './Markets.astro';
 import Stores from './Stores.astro';
 import LargeOrders from './LargeOrders.astro';
 import About from './About.astro';
+import Faq from './Faq.astro';
 import Contact from './Contact.astro';
+import WhatsAppFloat from './WhatsAppFloat.astro';
 import Footer from './Footer.astro';
 import type { Lang } from '../i18n/content';
 
@@ -24,7 +26,9 @@ const { lang } = Astro.props;
     <Stores lang={lang} />
     <LargeOrders lang={lang} />
     <About lang={lang} />
+    <Faq lang={lang} />
     <Contact lang={lang} />
   </main>
+  <WhatsAppFloat lang={lang} />
   <Footer lang={lang} />
 </Layout>

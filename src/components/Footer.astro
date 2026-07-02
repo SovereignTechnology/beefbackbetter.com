@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.png';
 import { ui, site, type Lang } from '../i18n/content';
 
 interface Props {
@@ -12,7 +14,7 @@ const year = new Date().getFullYear();
 <footer class="site-footer">
   <div class="container footer-inner">
     <div class="footer-brand">
-      <img class="brand-logo" src="/images/logo.png" alt="" width="44" height="44" />
+      <Image class="brand-logo" src={logo} alt="" width={44} height={44} densities={[1, 2]} loading="lazy" />
       <div>
         <p class="footer-name">{site.brand}</p>
         <p class="footer-tag">{t.footer.tagline}</p>
@@ -24,6 +26,7 @@ const year = new Date().getFullYear();
       <a href="#stores">{t.nav.stores}</a>
       <a href="#orders">{t.nav.orders}</a>
       <a href="#about">{t.nav.about}</a>
+      <a href="#faq">{t.faq.navLabel}</a>
       <a href="#contact">{t.nav.contact}</a>
       <a href={site.instagram.url} target="_blank" rel="noopener noreferrer">{site.instagram.handle}</a>
       <a href={site.x.url} target="_blank" rel="noopener noreferrer">{site.x.handle}</a>

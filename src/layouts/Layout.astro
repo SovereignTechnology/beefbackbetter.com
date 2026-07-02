@@ -2,7 +2,7 @@
 import '@fontsource-variable/space-grotesk';
 import '@fontsource-variable/inter';
 import '../styles/global.css';
-import { ui, site, type Lang } from '../i18n/content';
+import { ui, site, markets, whatsappUrl, type Lang } from '../i18n/content';
 
 interface Props {
   lang: Lang;
@@ -12,9 +12,36 @@ const { lang } = Astro.props;
 const t = ui[lang];
 
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
-// Social share preview. The square logo works; swap for a 1200×630 image later if desired.
-const ogImage: string | null = '/images/logo.png';
+// Social share preview (1200×630, generated from the hero photo).
+const ogImage: string | null = '/images/og.jpg';
 const ogImageUrl = ogImage ? new URL(ogImage, Astro.site).href : null;
+
+// LocalBusiness structured data for search engines: who we are, where to
+// find the stand, and how to get in touch. Mirrors the visible content.
+const businessJsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  '@id': new URL('/', Astro.site).href + '#business',
+  name: site.brand,
+  description: t.meta.description,
+  url: new URL('/', Astro.site).href,
+  image: ogImageUrl,
+  email: site.email,
+  sameAs: [site.instagram.url, site.x.url],
+  areaServed: { '@type': 'Country', name: 'El Salvador' },
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'sales',
+    url: whatsappUrl(t.contact.waMessage),
+    availableLanguage: ['es', 'en'],
+  },
+  location: markets.map((m) => ({
+    '@type': 'Place',
+    name: m.name,
+    address: { '@type': 'PostalAddress', addressLocality: m.location[lang], addressCountry: 'SV' },
+    ...(m.mapUrl ? { hasMap: m.mapUrl } : {}),
+  })),
+}).replace(/</g, '\\u003c');
 
 // Language auto-detection (runs only on the default "/" Spanish page):
 // send first-time visitors whose browser prefers English to /en/. A manual
@@ -55,11 +82,18 @@ const detectScript =
     <meta property="og:description" content={t.meta.description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:locale" content={lang === 'es' ? 'es_SV' : 'en_US'} />
+    <meta property="og:locale:alternate" content={lang === 'es' ? 'en_US' : 'es_SV'} />
     {ogImageUrl && <meta property="og:image" content={ogImageUrl} />}
+    {ogImageUrl && <meta property="og:image:width" content="1200" />}
+    {ogImageUrl && <meta property="og:image:height" content="630" />}
+    {ogImageUrl && <meta property="og:image:alt" content={t.meta.ogImageAlt} />}
     <meta name="twitter:card" content={ogImageUrl ? 'summary_large_image' : 'summary'} />
     <meta name="twitter:site" content={site.x.handle} />
     <meta name="twitter:creator" content={site.x.handle} />
     <meta name="theme-color" content="#ffffff" />
+
+    <!-- Structured data: local business with the market locations -->
+    <script type="application/ld+json" is:inline set:html={businessJsonLd} />
   </head>
   <body>
     <a class="skip-link" href="#main">{t.skipToContent}</a>
